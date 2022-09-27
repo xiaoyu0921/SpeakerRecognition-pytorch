@@ -1,4 +1,4 @@
-# Speaker Recognition From Scratch
+# SpeakerRecognition-pytorch
 
 ## Overview
 
