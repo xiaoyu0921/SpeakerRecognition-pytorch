@@ -12,12 +12,7 @@ TEST_DATA_DIR = os.path.join(
     os.path.expanduser("~"),
     "E:/天津大学/实验室/声纹识别/data/LibriSpeech/test-clean")
 
-# Paths of CSV files where the first column is speaker, and the second column is
-# utterance file.
-# These will allow you to train/evaluate using other datasets than LibriSpeech.
-# If given, TRAIN_DATA_DIR and/or TEST_DATA_DIR will be ignored.
-TRAIN_DATA_CSV = ""
-TEST_DATA_CSV = ""
+MODEL_NAME = "X_Vector"
 
 # Path of save model.
 SAVED_MODEL_PATH = os.path.join(
@@ -33,17 +28,10 @@ LSTM_HIDDEN_SIZE = 64
 # Number of LSTM layers.
 LSTM_NUM_LAYERS = 3
 
-# Whether to use bi-directional LSTM.
-BI_LSTM = True
 
 # If false, use last frame of LSTM inference as aggregated output;
 # if true, use mean frame of LSTM inference as aggregated output.
 FRAME_AGGREGATION_MEAN = True
-
-# If true, we use transformer instead of LSTM.
-USE_TRANSFORMER = False
-
-USE_TDNN = True
 
 # Dimension of transformer layers.
 TRANSFORMER_DIM = 32

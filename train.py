@@ -14,9 +14,9 @@ from utils_.save_model import save_model
 
 def get_speaker_encoder(load_from=""):
     """Create speaker encoder model or load it from a saved model."""
-    if myconfig.USE_TDNN:
+    if myconfig.MODEL_NAME == "X_Vector":
         return  X_vector_Encoder(saved_model=load_from).to(myconfig.DEVICE)
-    if myconfig.USE_TRANSFORMER:
+    if myconfig.MODEL_NAME == "Transformer":
         return TransformerSpeakerEncoder(load_from).to(myconfig.DEVICE)
     else:
         return LstmSpeakerEncoder(load_from).to(myconfig.DEVICE)
@@ -89,14 +89,13 @@ def train_network(spk_to_utts, num_steps, saved_model=None, pool=None):
 def run_training():
 
     # 构建数据集，得到spk_to_utts的字典结构
-    if myconfig.TRAIN_DATA_CSV:
-        spk_to_utts = dataset.get_csv_spk_to_utts(
-            myconfig.TRAIN_DATA_CSV)
-        print("Training data:", myconfig.TRAIN_DATA_CSV)
-    else:
-        spk_to_utts = dataset.get_librispeech_spk_to_utts(
-            myconfig.TRAIN_DATA_DIR)
-        print("Training data:", myconfig.TRAIN_DATA_DIR)
+    # spk_to_utts = dataset.get_librispeech_spk_to_utts(
+    #     myconfig.TRAIN_DATA_DIR)
+    '''创建dataloder'''
+
+    dataSetName = myconfig.TRAIN_DATA_DIR.split("/")[-3].split
+
+    print("Training data:", myconfig.TRAIN_DATA_DIR)
 
     # 调用multiprocess.Pool 通过多进程来更好的利用电脑上的多个CPU核，使模型训练高效
     with multiprocessing.Pool(myconfig.NUM_PROCESSES) as pool:
